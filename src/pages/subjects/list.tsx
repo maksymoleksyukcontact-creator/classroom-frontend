@@ -8,7 +8,7 @@ import { DEPARTMENTS_OPTIONS } from '@/constants'
 import { Subject } from '@/types'
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef } from '@tanstack/react-table'
-import { Badge, SearchIcon } from 'lucide-react'
+import { SearchIcon } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 const SubjectsList = () => {

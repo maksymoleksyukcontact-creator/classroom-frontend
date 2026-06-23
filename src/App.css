@@ -90,9 +90,9 @@
   --sidebar-accent-foreground: oklch(0.3729 0.0306 259.7328);
   --sidebar-border: oklch(0.9276 0.0058 264.5313);
   --sidebar-ring: oklch(0.7227 0.1920 149.5793);
-  --font-sans: DM Sans, sans-serif;
-  --font-serif: Lora, serif;
-  --font-mono: IBM Plex Mono, monospace;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-mono: "IBM Plex Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -145,9 +145,9 @@
   --sidebar-accent-foreground: oklch(0.7118 0.0129 286.0665);
   --sidebar-border: oklch(0.4461 0.0263 256.8018);
   --sidebar-ring: oklch(0.7729 0.1535 163.2231);
-  --font-sans: DM Sans, sans-serif;
-  --font-serif: Lora, serif;
-  --font-mono: IBM Plex Mono, monospace;
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Lora", serif;
+  --font-mono: "IBM Plex Mono", monospace;
   --radius: 0.5rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -171,6 +171,7 @@
     @apply border-border outline-ring/50;
     font-family: var(--font-sans);
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -188,7 +189,7 @@
   .search-field {
     @apply relative w-full max-h-9 md:max-w-72;
 
-  .search-icon {
+    .search-icon {
       @apply absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-primary;
     }
   }
@@ -466,7 +467,7 @@
     .details-header {
       @apply flex flex-col sm:flex-row sm:items-start justify-between gap-5 mb-4;
 
-      > div:first-child {
+      >div:first-child {
         @apply flex-1 space-y-2;
 
         h1 {
@@ -478,10 +479,10 @@
         }
       }
 
-      > div:last-child {
+      >div:last-child {
         @apply space-x-2;
 
-        > * {
+        >* {
           @apply px-3 py-1;
         }
 
@@ -502,11 +503,11 @@
     .instructor {
       @apply space-y-2;
 
-      > p {
+      >p {
         @apply text-xs mb-3 font-bold text-gray-400 uppercase tracking-wider;
       }
 
-      > div {
+      >div {
         @apply space-y-2 flex items-center gap-2;
       }
 
@@ -514,11 +515,11 @@
         @apply size-13 rounded-full object-cover;
       }
 
-      > div > div > p:first-child {
+      >div>div>p:first-child {
         @apply text-base font-mono font-bold text-primary;
       }
 
-      > div > div > p:last-child {
+      >div>div>p:last-child {
         @apply text-sm font-medium mb-2;
       }
     }
@@ -526,11 +527,11 @@
     .department {
       @apply space-y-2;
 
-      > p {
+      >p {
         @apply text-xs font-bold text-muted-foreground uppercase tracking-wider;
       }
 
-      > div {
+      >div {
         @apply space-y-2;
 
         p:first-child {
@@ -546,11 +547,11 @@
     .subject {
       @apply space-y-2;
 
-      > p {
+      >p {
         @apply text-xs font-bold text-muted-foreground uppercase tracking-wider;
       }
 
-      > div {
+      >div {
         @apply space-y-2;
 
         span {
