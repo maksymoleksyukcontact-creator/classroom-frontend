@@ -1,0 +1,42 @@
+export const SUBJECTS_DATA = [
+  {
+    id: 1,
+    code: "CS101",
+    name: "Introduction to Computer Science",
+    department: "CS",
+    description: "An introductory course covering the fundamental concepts of computer science and programming.",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 2,
+    code: "CS102",
+    name: "Data Structures",
+    department: "CS",
+    description: "Study of arrays, linked lists, stacks, queues, trees, and graphs.",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 3,
+    code: "MATH201",
+    name: "Discrete Mathematics",
+    department: "Mathematics",
+    description: "Introduction to logic, sets, relations, combinatorics, and graph theory.",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 4,
+    code: "ENG101",
+    name: "Academic Writing",
+    department: "English",
+    description: "Development of academic writing and critical thinking skills.",
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 5,
+    code: "PHY101",
+    name: "General Physics",
+    department: "Physics",
+    description: "Fundamental principles of mechanics, energy, and motion.",
+    createdAt: new Date().toISOString(),
+  },
+];
