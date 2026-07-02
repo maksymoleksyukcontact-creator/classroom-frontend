@@ -1,25 +1,44 @@
-import { createSimpleRestDataProvider } from "@refinedev/rest/simple-rest";
-import { SUBJECTS_DATA } from "@/constants";
-import { API_URL } from "./constants";
-import { BaseRecord, GetListParams, GetListResponse } from "@refinedev/core";
+import { BACKEND_BASE_URL } from "@/constants";
+import { createDataProvider, CreateDataProviderOptions } from "@refinedev/rest";
 
-export const { dataProvider, kyInstance } = createSimpleRestDataProvider({
-  apiURL: API_URL,
-});
+const options: CreateDataProviderOptions = {
+  getList: {
+    getEndpoint: ({ resource }) => resource,
 
-const originalGetList = dataProvider.getList;
+    buildQueryParams: async ({ resource, pagination, filters, }) => {
+      const page = pagination?.currentPage ?? 1;
+      const pageSize = pagination?.pageSize ?? 10;
 
-dataProvider.getList = async <TData extends BaseRecord = BaseRecord>(params: GetListParams): Promise<GetListResponse<TData>> => {
+      const params: Record<string, string | number> = { page, limit: pageSize };
 
-  const { resource } = params;
+      filters?.forEach((filter) => {
+        const field = "field" in filter ? filter.field : undefined;
+        const value = String(filter.value);
 
-  if (resource === 'subjects') {
-    return {
-      data: SUBJECTS_DATA as unknown as TData[],
-      total: SUBJECTS_DATA.length,
-    };
+        if (resource === 'subjects') {
+          if (field === 'department') params.department = value;
+          if (field === 'name') params.search = value;
+        }
+      })
+
+      return params;
+    },
+
+
+    mapResponse: async (response) => {
+      const json = await response.json();
+      // Your API returns: { data: [...], total: 123 }
+      // Refine needs: [...]
+      return json.data ?? [];
+    },
+
+    getTotalCount: async (response) => {
+      const json = await response.json();
+      // Your API returns: { data: [...], total: 123 }
+      // Refine needs: 123
+      return json.pagination?.total ?? json.data?.length ?? 0;
+    },
   }
-  
+}
 
-  return originalGetList(params);
-};
+export const { dataProvider } = createDataProvider(BACKEND_BASE_URL, options);
