@@ -1,6 +1,10 @@
 import { BACKEND_BASE_URL } from "@/constants";
 import { createDataProvider, CreateDataProviderOptions } from "@refinedev/rest";
 
+if (!BACKEND_BASE_URL) {
+  throw new Error("Missing BACKEND_BASE_URL environment variable");
+}
+
 const options: CreateDataProviderOptions = {
   getList: {
     getEndpoint: ({ resource }) => resource,
@@ -26,14 +30,14 @@ const options: CreateDataProviderOptions = {
 
 
     mapResponse: async (response) => {
-      const json = await response.json();
+      const json = await response.clone().json();
       // Your API returns: { data: [...], total: 123 }
       // Refine needs: [...]
       return json.data ?? [];
     },
 
     getTotalCount: async (response) => {
-      const json = await response.json();
+      const json = await response.clone().json();
       // Your API returns: { data: [...], total: 123 }
       // Refine needs: 123
       return json.pagination?.total ?? json.data?.length ?? 0;
