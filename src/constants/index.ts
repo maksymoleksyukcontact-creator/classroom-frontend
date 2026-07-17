@@ -71,6 +71,7 @@ const getEnvVar = (key: string): string => {
 };
 
 export const BACKEND_BASE_URL = getEnvVar("VITE_BACKEND_BASE_URL");
+export const CLOUDINARY_CLOUD_NAME = getEnvVar("VITE_CLOUDINARY_CLOUD_NAME");
 
 export const teachers = [
     {

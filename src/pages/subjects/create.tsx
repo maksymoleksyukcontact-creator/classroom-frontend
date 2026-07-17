@@ -1,7 +1,7 @@
-const CreateList = () => {
+const SubjectsCreate = () => {
   return (
-    <div>CreateList</div>
+    <div>Create subjects</div>
   )
 }
 
-export default CreateList
+export default SubjectsCreate

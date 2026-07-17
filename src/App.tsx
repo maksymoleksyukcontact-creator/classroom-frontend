@@ -1,16 +1,11 @@
 import {
-  Refine,
-  GitHubBanner,
-  WelcomePage,
-  Authenticated,
+  Refine
 } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 import routerProvider, {
-  NavigateToResource,
-  CatchAllNavigate,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router";
@@ -22,8 +17,11 @@ import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import "./App.css";
 import Dashboard from "./pages/dashboard";
 import SubjectsList from "./pages/subjects/list";
-import CreateList from "./pages/subjects/create";
-import { BookOpen, Home } from "lucide-react";
+import SubjectsCreate from "./pages/subjects/create";
+
+import { BookOpen, Home, School } from "lucide-react";
+import ClassesCreate from "./pages/classes/create";
+import ClassesList from "./pages/classes/list";
 
 function App() {
   return (
@@ -51,6 +49,12 @@ function App() {
                   list: "subjects",
                   meta: { label: "Subjects", icon: <BookOpen /> }
                 },
+                {
+                  name: "Classes",
+                  list: "classes",
+                  create: "classes/create",
+                  meta: { label: "Classes", icon: <School /> }
+                },
               ]}
             >
               <Routes>
@@ -62,7 +66,11 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="subjects">
                     <Route index element={<SubjectsList />} />
-                    <Route path="create" element={<CreateList />} />
+                    <Route path="create" element={<SubjectsCreate />} />
+                  </Route>
+                  <Route path="classes">
+                      <Route index element={<ClassesList />} />
+                      <Route path="create" element={<ClassesCreate />} />
                   </Route>
                 </Route>
               </Routes>
